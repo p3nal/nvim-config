@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
 
-
-
 local options = { noremap = true, silent = true }
 
 local nkeymap = function(key, func)
@@ -9,12 +7,15 @@ local nkeymap = function(key, func)
   vim.api.nvim_set_keymap('n', key, func, options)
 end
 
--- too lazy for c-w
-nkeymap('<c-j>', ':wincmd j<CR>')
-nkeymap('<c-h>', ':wincmd h<CR>')
-nkeymap('<c-k>', ':wincmd k<CR>')
-nkeymap('<c-l>', ':wincmd l<CR>')
+-- nkeymap('<c-j>', ':wincmd j<CR>')
+-- nkeymap('<c-h>', ':wincmd h<CR>')
+-- nkeymap('<c-l>', ':wincmd l<CR>')
 
+-- TODO nudge up
+-- nkeymap('<c-k>', ":'<,'>move +1<CR>")
+-- nkeymap('<c-j>', ":'<,'>move -2<CR>")
+
+-- too lazy for c-w
 nkeymap('<leader>j', ':wincmd j<CR>')
 nkeymap('<leader>h', ':wincmd h<CR>')
 nkeymap('<leader>k', ':wincmd k<CR>')
@@ -36,7 +37,7 @@ nkeymap('gi', ':lua vim.lsp.buf.implementation()<cr>')
 -- nkeymap('gr', ':lua vim.lsp.buf.references()<cr>')
 nkeymap('gt', ':lua vim.lsp.buf.type_definition()<cr>')
 nkeymap('K', ':lua vim.lsp.buf.hover()<cr>')
-nkeymap('<c-k>', ':lua vim.lsp.buf.signature_help()<cr>')
+nkeymap('<c-h>', ':lua vim.lsp.buf.signature_help()<cr>')
 -- nkeymap('<leader>af', ':lua vim.lsp.buf.code_action()<cr>')
 nkeymap('<leader>rn', ':lua vim.lsp.buf.rename()<cr>')
 nkeymap('<leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>')
