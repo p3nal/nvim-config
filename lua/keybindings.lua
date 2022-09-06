@@ -36,13 +36,20 @@ nkeymap('gi', ':lua vim.lsp.buf.implementation()<cr>')
 -- nkeymap('gw', ':lua vim.lsp.buf.workspace_symbol()<cr>')
 -- nkeymap('gr', ':lua vim.lsp.buf.references()<cr>')
 nkeymap('gt', ':lua vim.lsp.buf.type_definition()<cr>')
-nkeymap('K', ':lua vim.lsp.buf.hover()<cr>')
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if client.server_capabilities.hoverProvider then
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, { buffer = args.buf })
+    end
+  end,
+})
 nkeymap('<c-h>', ':lua vim.lsp.buf.signature_help()<cr>')
--- nkeymap('<leader>af', ':lua vim.lsp.buf.code_action()<cr>')
+nkeymap('<leader>af', ':lua vim.lsp.buf.references()<cr>')
 nkeymap('<leader>rn', ':lua vim.lsp.buf.rename()<cr>')
-nkeymap('<leader>fo', '<cmd>lua vim.lsp.buf.formatting()<CR>')
+nkeymap('<leader>fo', '<cmd>lua vim.lsp.buf.format({async = true})<CR>')
 nkeymap('<leader>b', ':bn<CR>')
-nkeymap('<leader>d' , '<cmd>:bd<CR>')
+nkeymap('<leader>d', '<cmd>:bd<CR>')
 
 -- nvim-tree
 --
