@@ -20,7 +20,15 @@ require('packer').startup(function()
   -- Treesitter
   -- Commenting
   -- tpope is awesome
-  use 'tpope/vim-commentary'
+  -- use 'tpope/vim-commentary'
+  -- sorry to let you down tpope
+  -- but this is a bit cooler
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -100,11 +108,11 @@ require('packer').startup(function()
           lualine_c = {
             {
               'filename',
-              file_status = true,    -- Displays file status (readonly status, modified status)
+              file_status = true, -- Displays file status (readonly status, modified status)
               newfile_status = true, -- Display new file status (new file means no write after created)
-              path = 3,              -- absolute path with ~
-              shorting_target = 40,  -- Shortens path to leave 40 spaces in the window
-                                     -- for other components. (terrible name, any suggestions?)
+              path = 3, -- absolute path with ~
+              shorting_target = 40, -- Shortens path to leave 40 spaces in the window
+              -- for other components. (terrible name, any suggestions?)
               symbols = {
                 modified = '[+]', -- Text to show when the file is modified.
                 readonly = '[-]', -- Text to show when the file is non-modifiable or readonly.
