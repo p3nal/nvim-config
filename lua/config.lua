@@ -1,3 +1,8 @@
+-- nvim tree stuff
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- ok now back to ordinary stuff
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -36,3 +41,5 @@ vim.api.nvim_create_autocmd('BufWritePre', {
     command = '%s/\\s\\+$//e',
 })
 vim.cmd [[highlight WinSeparator guibg=None]]
+
+

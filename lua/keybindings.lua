@@ -66,3 +66,7 @@ nkeymap("<leader>fh", "<cmd>lua require('telescope.builtin').help_tags()<cr>")
 -- Undotree, thats the only one i need
 -- for now at least
 nkeymap("<leader>u", "<cmd>UndotreeToggle<cr>")
+
+
+-- floaterm
+vim.g.floaterm_keymap_toggle = '<leader>ft'

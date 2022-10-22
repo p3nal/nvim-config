@@ -23,13 +23,15 @@ require('packer').startup(function()
   -- use 'tpope/vim-commentary'
   -- sorry to let you down tpope
   -- but this is a bit cooler
+  use 'voldikss/vim-floaterm'
+
   use {
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
     end
   }
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -82,9 +84,6 @@ require('packer').startup(function()
     server:setup(opts)
   end)
 
-  local function test()
-    return vim.fn.expand('%')
-  end
 
   -- lualine
   use {
@@ -148,7 +147,6 @@ require('packer').startup(function()
     require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
       auto_reload_on_write = true,
       disable_netrw = false,
-      -- hide_root_folder = false,
       hijack_cursor = false,
       hijack_netrw = true,
       hijack_unnamed_buffer_when_opening = false,
@@ -160,8 +158,8 @@ require('packer').startup(function()
       update_cwd = false,
       view = {
         width = 30,
-        height = 30,
         side = "left",
+        hide_root_folder = false,
         preserve_window_proportions = false,
         number = false,
         relativenumber = false,
@@ -351,11 +349,16 @@ require('packer').startup(function()
     capabilities = capabilities
   }
 
-  -- TELESCOPE
+  -- telescope
   --
   use {
-    'nvim-telescope/telescope.nvim',
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
     requires = { { 'nvim-lua/plenary.nvim' } }
+  }
+  require('telescope').setup {
+    defaults = {
+      file_ignore_patterns = { 'main.log', 'main.aux', 'main.out', 'main.bbl', 'main.blg', 'node_modules', '.git/', '%.pdf', '%.mp4', '%.jpg', '%.png'  }
+    }
   }
 
   -- ive lived enough without undotree
